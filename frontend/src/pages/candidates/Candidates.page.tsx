@@ -1,23 +1,23 @@
 import { useEffect, useState } from 'react'
-import './Companies.scss'
-import { ICompany } from '../../types/global.typing';
+import './Candidates.scss'
+import { ICandidate } from '../../types/global.typing';
 import httpModule from '../../helpers/http.module';
 import { Button, CircularProgress } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Add } from '@mui/icons-material';
-import CompaniesGrid from '../../components/companies/CompaniesGrid.component';
+import CandidatesGrid from '../../components/candidates/CandidatesGrid.component';
 
-const Companies = () => {
+const Candidates = () => {
 
-    const [companies, setCompanies] = useState<ICompany[]>([]);
+    const [candidates, setCandidates] = useState<ICandidate[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const redirect = useNavigate()
     useEffect(() => {
         setLoading(true);
         httpModule
-            .get<ICompany[]>("/Company/Get")
+            .get<ICandidate[]>("/Candidate/Get")
             .then((response) => {
-                setCompanies(response.data);
+                setCandidates(response.data);
                 setLoading(false);
             })
             .catch((error) => {
@@ -28,18 +28,18 @@ const Companies = () => {
     }, []);
 
     return (
-        <div className='content companies'>
+        <div className='content candidates'>
             <div className="heading">
-                <h2>Companies</h2>
-                <Button variant='outlined' onClick={() => redirect("/companies/add")}>
+                <h2>Candidates</h2>
+                <Button variant='outlined' onClick={() => redirect("/candidates/add")}>
                     <Add />
                 </Button>
             </div>
             {
-                loading ? <CircularProgress size={100} /> : companies.length === 0 ? <h1>No Company</h1> : <CompaniesGrid data={companies} />
+                loading ? <CircularProgress size={100} /> : candidates.length === 0 ? <h1>No Candidate</h1> : <CandidatesGrid data={candidates} />
             }
         </div>
     )
 }
 
-export default Companies
+export default Candidates

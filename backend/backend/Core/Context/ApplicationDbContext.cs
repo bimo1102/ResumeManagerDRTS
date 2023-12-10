@@ -32,7 +32,7 @@ namespace backend.Core.Context
                 .HasConversion<string>();
 
             modelBuilder.Entity<Job>()
-                .Property(job => job.Lever)
+                .Property(job => job.Level)
                 .HasConversion<string>();
         }
     }

@@ -7,7 +7,7 @@ namespace backend.Core.Dtos.Job
     {
         public long Id { get; set; }
         public string Title { get; set; }
-        public JobLever Lever { get; set; }
+        public JobLevel Level { get; set; }
         public long CompanyId { get; set; }
         public string CompanyName { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;

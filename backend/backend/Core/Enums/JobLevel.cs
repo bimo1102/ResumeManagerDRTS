@@ -1,6 +1,6 @@
 ﻿namespace backend.Core.Enums
 {
-    public enum JobLever
+    public enum JobLevel
     {
         Intern,
         Junior,
