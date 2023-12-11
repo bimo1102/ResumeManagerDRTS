@@ -3,7 +3,7 @@ import { ThemeContext } from './context/theme.context';
 import Navbar from './components/navbar/Navbar.component';
 import { Route, Routes } from 'react-router-dom';
 import CustomLinearLoader from './components/CustomLinearLoader/CustomLinearLoader.components';
-import AddCandidate from './pages/candidates/AddCandidate.page';
+// import AddCandidate from './pages/candidates/AddCandidate.page';
 // import Candidates from './pages/candidates/companies/Candidates.page';
 // import AddJob from './pages/jobs/AddJob.page';
 // import Jobs from './pages/jobs/Jobs.page';
@@ -20,7 +20,7 @@ const Jobs = lazy(() => import('./pages/jobs/Jobs.page'));
 const AddJob = lazy(() => import('./pages/jobs/AddJob.page'));
 
 const Candidates = lazy(() => import('./pages/candidates/Candidates.page'));
-
+const AddCandidate = lazy(() => import('./pages/candidates/AddCandidate.page'));
 
 const App = () => {
 

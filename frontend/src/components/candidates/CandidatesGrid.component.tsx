@@ -1,18 +1,19 @@
 import { Box } from '@mui/material'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
-import moment from 'moment'
 import React from 'react'
 import { ICandidate } from '../../types/global.typing'
+import { baseUrl } from '../../constants/url.constants'
+import { PictureAsPdf } from '@mui/icons-material'
 
 const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 100 },
-    { field: "firstName", headerName: "Name", width: 200 },
-    { field: "lastName", headerName: "First Name", width: 150 },
-    { field: "email", headerName: "Last Name", width: 150 },
-    { field: "phone", headerName: "Email", width: 150 },
-    { field: "corverLetter", headerName: "Phone", width: 150 },
-    { field: "jobTitle", headerName: "C V", width: 150 },
-    { field: "resumeUrl", headerName: "Download", width: 200, renderCell: (params) => moment(params.row.createAt).format("YYYY-MM-DD") },
+    { field: "firstName", headerName: "First Name", width: 120 },
+    { field: "lastName", headerName: "Last Name", width: 120 },
+    { field: "email", headerName: "Email", width: 150 },
+    { field: "phone", headerName: "Phone", width: 150 },
+    { field: "coverLetter", headerName: "Cover Letter", width: 400 },
+    { field: "jobTitle", headerName: "Title", width: 150 },
+    { field: "resumeUrl", headerName: "Download", width: 150, renderCell: (params) => <a href={`${baseUrl}/Candidate/download/${params.row.resumeUrl}`}><PictureAsPdf /></a> },
 ]
 
 interface ICandidatesGridProps {

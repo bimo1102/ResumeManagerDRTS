@@ -9,7 +9,7 @@ type Props = {}
 const levelsArray: string[] = ["Intern", "Junior", "MidLevel", "Senior", "Teamlead", "Cto", "Architect"]
 
 const AddJob = (props: Props) => {
-    const [job, setJob] = useState<ICreateJobDto>({ title: "", level: "", companyId: "" });
+    const [jobs, setJobs] = useState<ICreateJobDto>({ title: "", level: "", companyId: "" });
     const [companies, setCompany] = useState<ICompany[]>([])
     const redirect = useNavigate()
     useEffect(() => {
@@ -24,11 +24,11 @@ const AddJob = (props: Props) => {
             })
     }, [])
     const handleClickSaveBtn = () => {
-        if (job.title === "" || job.level === "") {
+        if (jobs.title === "" || jobs.level === "") {
             alert("Fill all fields");
             return;
         }
-        httpModule.post("/Job/Create", job).then(responst => redirect("/jobs")).catch((error) => console.log(error))
+        httpModule.post("/Job/Create", jobs).then(responst => redirect("/jobs")).catch((error) => console.log(error))
     }
     const handleClickBackBtn = () => {
         redirect("/jobs")
@@ -41,15 +41,15 @@ const AddJob = (props: Props) => {
                     autoComplete='off'
                     label="Job Title"
                     variant='outlined'
-                    value={job.title}
-                    onChange={e => setJob({ ...job, title: e.target.value })}
+                    value={jobs.title}
+                    onChange={e => setJobs({ ...jobs, title: e.target.value })}
                 />
                 <FormControl fullWidth>
                     <InputLabel>Job Level</InputLabel>
                     <Select
-                        value={job.level}
+                        value={jobs.level}
                         label="Job Level"
-                        onChange={(e) => setJob({ ...job, level: e.target.value })}
+                        onChange={(e) => setJobs({ ...jobs, level: e.target.value })}
                     >
                         {
                             levelsArray.map(item => <MenuItem key={item} value={item}>{item}</MenuItem>)
@@ -59,9 +59,9 @@ const AddJob = (props: Props) => {
                 <FormControl fullWidth>
                     <InputLabel>Company</InputLabel>
                     <Select
-                        value={job.companyId}
+                        value={jobs.companyId}
                         label="Job Level"
-                        onChange={(e) => setJob({ ...job, companyId: e.target.value })}
+                        onChange={(e) => setJobs({ ...jobs, companyId: e.target.value })}
                     >
                         {
                             companies.map(item => <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>)

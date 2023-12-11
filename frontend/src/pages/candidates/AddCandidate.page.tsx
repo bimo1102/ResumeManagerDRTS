@@ -7,9 +7,10 @@ import './Candidates.scss';
 type Props = {}
 
 const AddCandidate = (props: Props) => {
-    const [candidates, setCandidates] = useState<ICreateCandidateDto>({ firstName: "", lastName: "", email: "", phone: "", corverLetter: "", jobId: "" });
+    const [candidates, setCandidates] = useState<ICreateCandidateDto>({ firstName: "", lastName: "", email: "", phone: "", coverLetter: "", jobId: "" });
     const redirect = useNavigate()
     const [jobs, setJobs] = useState<IJob[]>([])
+    const [pdfFile, setPdfFile] = useState<File | null>()
     useEffect(() => {
         httpModule
             .get<IJob[]>("/Job/Get")
@@ -22,18 +23,29 @@ const AddCandidate = (props: Props) => {
             })
     }, [])
     const handleClickSaveBtn = () => {
-        if (candidates.firstName === "" || candidates.lastName === "" || candidates.email === "" || candidates.phone === "" || candidates.corverLetter === "" || candidates.jobId === "") {
+        if (candidates.firstName === "" || candidates.lastName === "" || candidates.email === "" || candidates.phone === "" || candidates.coverLetter === "" || candidates.jobId === "" || !pdfFile) {
             alert("Fill all fields");
             return;
         }
-        httpModule.post("/Candidate/Create", candidates).then(responst => redirect("/candidates")).catch((error) => console.log(error))
+        const newCandidateFormData = new FormData();
+        newCandidateFormData.append("firstName", candidates.firstName);
+        newCandidateFormData.append("lastName", candidates.lastName);
+        newCandidateFormData.append("email", candidates.email);
+        newCandidateFormData.append("phone", candidates.phone);
+        newCandidateFormData.append("coverLetter", candidates.coverLetter);
+        newCandidateFormData.append("jobId", candidates.jobId);
+        newCandidateFormData.append("pdfFile", pdfFile);
+        httpModule
+            .post("/Candidate/Create", newCandidateFormData, { headers: { "Content-Type": "multipart/form-data" } })
+            .then((responst) => redirect("/candidates"))
+            .catch((error) => console.log(error));
     }
     const handleClickBackBtn = () => {
         redirect("/candidates")
     }
     return (
         <div className="content">
-            <div className="add-Candidate">
+            <div className="add-candidate">
                 <h2>Add New Candidate</h2>
                 <FormControl fullWidth>
                     <InputLabel>Job</InputLabel>
@@ -54,7 +66,36 @@ const AddCandidate = (props: Props) => {
                     value={candidates.firstName}
                     onChange={e => setCandidates({ ...candidates, firstName: e.target.value })}
                 />
-
+                <TextField
+                    autoComplete='off'
+                    label="Last Name"
+                    variant='outlined'
+                    value={candidates.lastName}
+                    onChange={e => setCandidates({ ...candidates, lastName: e.target.value })}
+                />
+                <TextField
+                    autoComplete='off'
+                    label="Email"
+                    variant='outlined'
+                    value={candidates.email}
+                    onChange={e => setCandidates({ ...candidates, email: e.target.value })}
+                />
+                <TextField
+                    autoComplete='off'
+                    label="Phone"
+                    variant='outlined'
+                    value={candidates.phone}
+                    onChange={e => setCandidates({ ...candidates, phone: e.target.value })}
+                />
+                <TextField
+                    autoComplete='off'
+                    label="Cover Letter"
+                    variant='outlined'
+                    value={candidates.coverLetter}
+                    onChange={e => setCandidates({ ...candidates, coverLetter: e.target.value })}
+                    multiline
+                />
+                <input type="file" onChange={(e) => setPdfFile(e.target.files ? e.target.files[0] : null)} />
                 <div className="btn">
                     <Button variant='outlined' color='primary' onClick={handleClickSaveBtn}>
                         Save

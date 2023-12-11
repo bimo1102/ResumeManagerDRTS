@@ -24,7 +24,7 @@ const Candidates = () => {
                 alert("Error");
                 console.log(error);
                 setLoading(false);
-            });
+            })
     }, []);
 
     return (

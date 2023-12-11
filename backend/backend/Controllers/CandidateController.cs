@@ -11,11 +11,11 @@ namespace backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CadidateController : ControllerBase
+    public class CandidateController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
-        public CadidateController(ApplicationDbContext context, IMapper mapper)
+        public CandidateController(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

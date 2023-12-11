@@ -30,7 +30,7 @@ export interface ICandidate {
     lastName: string;
     email: string;
     phone: string;
-    corverLetter: string;
+    coverLetter: string;
     resumeUrl: string;
     jobId: string;
     jobTitle: string;
@@ -41,6 +41,6 @@ export interface ICreateCandidateDto {
     lastName: string;
     email: string;
     phone: string;
-    corverLetter: string;
+    coverLetter: string;
     jobId: string;
 }
