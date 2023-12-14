@@ -36,7 +36,7 @@ const AddCandidate = (props: Props) => {
         newCandidateFormData.append("jobId", candidates.jobId);
         newCandidateFormData.append("pdfFile", pdfFile);
         httpModule
-            .post("/Candidate/Create", newCandidateFormData, { headers: { "Content-Type": "multipart/form-data" } })
+            .post("/Candidate/Create", newCandidateFormData)
             .then((responst) => redirect("/candidates"))
             .catch((error) => console.log(error));
     }

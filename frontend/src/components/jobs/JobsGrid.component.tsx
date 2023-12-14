@@ -2,6 +2,7 @@ import { Box } from '@mui/material'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import { IJob } from '../../types/global.typing'
 import moment from 'moment'
+import './Jobs-grid.scss'
 
 
 const columns: GridColDef[] = [

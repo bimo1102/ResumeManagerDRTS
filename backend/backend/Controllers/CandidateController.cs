@@ -26,13 +26,14 @@ namespace backend.Controllers
         //Create
         [HttpPost]
         [Route("Create")]
-        public async Task<IActionResult> CreateCandidate([FromForm] CandidateCreateDto dto, IFormFile pdFile)
+        public async Task<IActionResult> CreateCandidate([FromForm] CandidateCreateDto dto, IFormFile ?file)
         {
             //Firt ==> save pdf to Server
             //then => save url into our entity
+            file = Request.Form.Files[0];
             var fiveMegaByte = 5 * 1024 * 1024;
             var pdfMimeType = "application/pdf";
-            if(pdFile.Length > fiveMegaByte || pdFile.ContentType != pdfMimeType)
+            if(file.Length > fiveMegaByte || file.ContentType != pdfMimeType)
             {
                 return BadRequest("File is not valid");
             }
@@ -40,7 +41,7 @@ namespace backend.Controllers
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "documents", "pdfs", resumeUrl);
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
-                await pdFile.CopyToAsync(stream);
+                await file.CopyToAsync(stream);
             }
 
             var newCandidate = _mapper.Map<Candidate>(dto);

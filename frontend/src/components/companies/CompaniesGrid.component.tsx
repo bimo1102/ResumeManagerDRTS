@@ -3,6 +3,7 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import moment from 'moment'
 import React from 'react'
 import { ICompany } from '../../types/global.typing'
+import './Companies-grid.scss'
 
 const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 100 },

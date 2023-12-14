@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uk1UUHYXAOTZfgv7mrgV+ULr/jIzWPJkzxGFYu9NeDVuZRwQH1R1J+WOiS84qJ45PjQL739SZMFX8s9WpiMJHQ==",
+  "dgSpecHash": "KSPjFbU48Zb8+bwKmdgdSqgEq2Jkg71TIaYpva5hpU9CSwq2b3ki+6F/G4bfQ16Xhb4FbUn9wE3/UFm9SirzpA==",
   "success": true,
-  "projectFilePath": "D:\\ManagementWithDRTS\\backend\\backend\\backend.csproj",
+  "projectFilePath": "C:\\work\\WebManagermenDRTS\\backend\\backend\\backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\levan\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\levan\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
